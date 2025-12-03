@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Electronic Publishing</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+  <link rel="stylesheet" href="{{ url_for('serve_static', filename='style.css') }}">
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo">
+      <img src="static/logo.png" width="100" height="100" alt="Logo">
+    </div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#portfolio">Portfolio</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="{{ url_for('analysis') }}">Analysis</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-left">
+        <h1 class="big-title">Why We Adopt, What We Value, and How AI Understands It</h1>
+        <p class="lead">
+          Adopting a pet is a deeply personal decision influenced by lifestyle, finances, emotional readiness, and compassion.
+          This study examines how AI models mimic those choices, from budgeting for care to understanding activity needs, helping us uncover how “human” their decision-making really is.
+        </p>
+
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-photo"></div>
+        <div class="carousel-dots">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+      <h2 style="text-align:center;margin-bottom:12px">PORTFOLIO</h2>
+
+      <div class="tabs">
+        <div class="tab active">PETS</div>
+        <div class="tab" data-filter="adopt">ADOPT SURVEY</div>
+        <div class="tab">PEOPLE</div>
+      </div>
+
+      <div class="grid">
+        <!-- PET cards -->
+        <div class="card" data-type="pets" style="background-image:url('{{ url_for('static', filename='pets/dog1.jpg') }}')"></div>
+        <div class="card" data-type="pets" style="background-image:url('{{ url_for('static', filename='pets/dog2.jpg') }}')"></div>
+        <div class="card" data-type="pets" style="background-image:url('{{ url_for('static', filename='pets/dog3.jpg') }}')"></div>
+        <div class="card" data-type="pets" style="background-image:url('{{ url_for('static', filename='pets/dog4.jpg') }}')"></div>
+        <div class="card" data-type="pets" style="background-image:url('{{ url_for('static', filename='pets/dog5.jpg') }}')"></div>
+        <div class="card" data-type="pets" style="background-image:url('{{ url_for('static', filename='pets/dog6.jpeg') }}')"></div>
+
+        <!-- PEOPLE cards -->
+          <div class="card" data-type="people" style="background-image:url('{{ url_for('static', filename='people/people1.jpeg') }}')">
+            <div class="card-overlay">
+                <p>Person 1</p>
+            </div>
+        </div>
+
+        <div class="card" data-type="people" style="background-image:url('{{ url_for('static', filename='people/people2.jpeg') }}')">
+            <div class="card-overlay">
+                <p>Person 2</p>
+            </div>
+        </div>
+
+        <div class="card" data-type="people" style="background-image:url('{{ url_for('static', filename='people/people3.jpeg') }}')">
+            <div class="card-overlay">
+                <p>Person 3</p>
+            </div>
+        </div>
+
+        <div class="card" data-type="people" style="background-image:url('{{ url_for('static', filename='people/people4.jpeg') }}')">
+            <div class="card-overlay">
+                <p>Person 4</p>
+            </div>
+        </div>
+
+        <div class="card" data-type="people" style="background-image:url('{{ url_for('static', filename='people/people5.jpeg') }}')">
+            <div class="card-overlay">
+                <p>Person 5</p>
+            </div>
+        </div>
+      </div>
+
+      <!-- ADOPT SURVEY graphs -->
+      <div class="adopt-graphs">
+        <h3 style="text-align:center;margin-bottom:12px">Adopt Survey | LLM Behaviour</h3>
+
+        <div class="adopt-graph-row">
+          <div class="adopt-graph">
+            <img src="{{ url_for('static', filename='plots/pie_chart.png') }}"
+                 alt="Failure Rate" class="plot-small">
+            <p>Shows the proportion of unanswered or invalid LLM responses (84 out of 1,683), highlighting basic reliability gaps.</p>
+          </div>
+
+          <div class="adopt-graph">
+            <img src="{{ url_for('static', filename='plots/budget_overall.png') }}"
+                 alt="Overall Budget Choices" class="plot-small">
+            <p>Shows how often each monthly pet-budget category was selected across all personas, revealing strong clustering toward mid range values.</p>
+          </div>
+        </div>
+
+        <div class="adopt-graph-row">
+          <div class="adopt-graph">
+            <img src="{{ url_for('static', filename='plots/budget_by_person.png') }}"
+                 alt="Budget by Persona" class="plot-small">
+            <p>Compares financial decisions across the five personas, exposing whether LLMs adjust budget choices realistically based on each persona’s background.</p>
+          </div>
+
+          <div class="adopt-graph">
+            <img src="{{ url_for('static', filename='plots/heatmap_activity_vs_alone.png') }}"
+                 alt="Activity vs Time Alone" class="plot-small">
+            <p>Shows how often each persona assigned a pet activity level relative to how long the pet would be left alone, indicating how well LLMs match responsibilities with pet needs.</p>
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:12px;">
+          <a href="{{ url_for('analysis') }}" class="btn primary">View full analysis</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About section-->
+    <section id="about" class="about">
+      <h2>About</h2>
+      <p>
+        This is a sample portfolio site for electronic publishing coursework, combining photography content
+        with an AI adopt-survey analysis project.
+      </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+      <h2>Contact Us</h2>
+      <div class="contact-content">
+        <div class="left">
+          <p><strong>Email:</strong> hello@example.com</p>
+          <p><strong>Phone:</strong> 0000 1111</p>
+          <p><strong>Social:</strong> Instagram / Facebook / X</p>
+        </div>
+        <div class="right">
+          <p>Working hours: 9:00 AM — 6:00 PM</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 Electronic Publishing Coursework</p>
+  </footer>
+
+  <!-- External JavaScript -->
+  <script src="{{ url_for('serve_static', filename='script.js') }}"></script>
+
+</body>
+</html>

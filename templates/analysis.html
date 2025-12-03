@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Analysis | Pet-Adoption LLM Study</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='logo.png') }}">
+    <link rel="stylesheet" href="{{ url_for('serve_static', filename='style.css') }}">
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<header class="header">
+    <img src="static/logo.png" width="100" height="100" alt="Logo">
+    <nav>
+      <a href="{{ url_for('home') }}">Home</a>
+      <a href="{{ url_for('home') }}">Portfolio</a>
+      <a href="{{ url_for('home') }}">About</a>
+      <a href="{{ url_for('home') }}">Contact</a>
+      <a href="{{ url_for('analysis') }}">Analysis</a>
+    </nav>
+</header>
+
+<!-- Main Content -->
+<div class="container">
+
+    <!-- Study description -->
+    <section>
+        <h1>Pet Adoption Scenario Analysis</h1>
+        <p>
+            This website has been created for analytical purposes, specifically to examine how different
+            AI models respond to pet adoption scenarios while pretending to embody particular personalities.
+            By placing the models in controlled, personality based settings, the project aims to observe
+            the extent to which these systems demonstrate an understanding of human behaviour,
+            decision making, and emotional reasoning.
+        </p>
+        <p>
+            Their responses are evaluated using several guiding questions: Do the models display coherent
+            behavioural patterns? Do their choices align with realistic human tendencies given their
+            background and constraints? And how effectively can they apply these “personality” traits in
+            everyday, practical contexts such as money management and pet care?
+            Ultimately, this analysis offers insight into the developmental maturity of contemporary AI
+            systems and their potential applications and limitations in realistic social and domestic
+            situations.
+        </p>
+    </section>
+
+    <!-- Q1: Failure rate -->
+    <section>
+        <h2>1. Failure Rate of LLMs Answering Questions</h2>
+
+        {% if pie_url %}
+            <img src="{{ pie_url }}" alt="Failure rate pie chart" class="plot">
+        {% endif %}
+
+        <p>
+            The pie chart summarises how often the language models failed to provide an answer across the
+            entire questionnaire. Out of a total of <strong>1,683</strong> individual questions, 
+            <strong>84</strong> were effectively unanswered (either left blank or marked as “Not specified”),
+            representing about <strong>6%</strong> of all responses. The remaining <strong>94%</strong> of
+            questions were answered in some form.
+        </p>
+        <p>
+            This metric captures a very basic but important property of the models: reliability. Even if an
+            answer is imperfect, a complete failure to respond indicates a breakdown in following
+            instructions or dealing with certain types of prompts. Later sections focus less on
+            “did it answer?” and more on “does the answer make sense for this persona?”, but this first
+            chart shows that non-answers are still a noticeable minority.
+        </p>
+    </section>
+
+    <!-- Q2: Financial questions – overall scatter -->
+    <section>
+        <h2>2. Financial Reasoning Across Personas</h2>
+
+        {% if budget_overall_url %}
+            <img src="{{ budget_overall_url }}" alt="Overall budget distribution scatter plot" class="plot">
+        {% endif %}
+
+        <p>
+            The overall scatter plot shows how often each monthly budget category was chosen across all
+            personas for the main financial question (e.g. how much money they can spend on a pet’s daily
+            needs). Each dot represents one answer; the vertical axis shows how many times that category
+            has been selected so far, while the red line and green band show the median and interquartile
+            range (IQR) of these counts.
+        </p>
+        <p>
+            We can see that the mid-range options (such as <em>$50–$100</em> and <em>$100–$200</em>) are
+            much more common than the extremes. This suggests that, in general, the models tend to choose
+            “safe” middle-ground financial answers rather than very low or very high budgets—regardless of
+            the specific personality they are role-playing.
+        </p>
+    </section>
+
+    <!-- Q2: Financial questions – by person scatter -->
+    <section>
+        <h3>2.1 Budget Choices by Specific Persona</h3>
+
+        {% if budget_person_url %}
+            <img src="{{ budget_person_url }}" alt="Budget distribution by person" class="plot">
+        {% endif %}
+
+        <p>
+            This set of scatter plots breaks the same budget question down by individual persona:
+        </p>
+        <ul>
+            <li><strong>Stephanie Lee</strong> – from Hong Kong, currently unemployed and actively job seeking (28 years old).</li>
+            <li><strong>Raymond Lau</strong> – retired secondary school teacher from Hong Kong (60 years old).</li>
+            <li><strong>Jason Lam</strong> – part-time barista from Hong Kong (24 years old).</li>
+            <li><strong>Samuel Ng</strong> – Form 5 secondary school student from Hong Kong.</li>
+            <li><strong>Li Wei</strong> – linguistics student (20 years old).</li>
+        </ul>
+        <p>
+            Each panel shows how frequently that specific persona chose each budget category. Ideally, the
+            financial choices should reflect the persona’s situation: for example, an unemployed job-seeker
+            or a secondary school student should probably not claim to be extremely generous or
+            “fully prepared” financially, while a retired teacher might plausibly have more stability.
+        </p>
+        <p>
+            Where the plots show very similar budgets across all personas, this suggests that the models
+            may be defaulting to generic, “nice sounding” answers instead of adapting their behaviour to
+            the constraints of each character. This is particularly useful for criticism: if a model claims
+            that a low-income or financially insecure persona is still “fully prepared” with a high pet
+            budget, it exposes a lack of realistic financial reasoning.
+        </p>
+    </section>
+
+    <!-- Q3: Activity level vs hours alone – heatmap -->
+    <section>
+        <h2>3. Matching Pet Activity Level and Time Left Alone</h2>
+
+        {% if heatmap_url %}
+            <img src="{{ heatmap_url }}" alt="Heatmap: Activity level vs hours alone" class="plot">
+        {% endif %}
+
+        <p>
+            The heatmap shows how often different combinations of pet activity level and time spent alone
+            were chosen. The rows represent the intended activity level of the pet (from
+            <em>Low – calm and cuddly</em> up to <em>High – very energetic</em>), while the columns indicate
+            how many hours per day the pet would be left alone (0–4, 5–8, or 9+ hours).
+        </p>
+        <p>
+            Most responses concentrate in the middle of the grid: <strong>medium activity pets</strong> that
+            are left alone for <strong>5–8 hours</strong> per day. There are fewer cases where a
+            high-energy pet is left alone for long periods, which is a positive sign: it suggests that the
+            models at least partially understand that very energetic animals should not be left by
+            themselves for too long. However, the overall pattern still shows a bias toward comfortable,
+            moderate combinations, again raising the question of whether the models are truly reasoning
+            about the welfare trade-offs or simply repeating “reasonable sounding” defaults.
+        </p>
+        <p>
+            Together with the financial charts, this heatmap helps evaluate how consistently the models
+            balance responsibilities (time, energy, money) with the type of pet they choose. This is key to
+            judging whether their decisions align with realistic human behaviour in everyday domestic life.
+        </p>
+    </section>
+</div>
+<footer class="footer">
+    <p>&copy; 2025 Electronic Publishing Coursework</p>
+  </footer>
+</body>
+</html>
