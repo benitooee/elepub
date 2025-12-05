@@ -4,9 +4,7 @@ const cards = document.querySelectorAll(".grid .card");
 const grid = document.querySelector(".grid");
 const adoptGraphs = document.querySelector(".adopt-graphs");
 
-/**
- * Show / hide the Adopt Survey graphs block
- */
+/* Show / hide the Adopt Survey graphs block */
 function toggleAdoptGraphs(filter) {
   if (!adoptGraphs) return;
   if (filter === "adopt" || filter === "adopt survey") {
@@ -16,12 +14,7 @@ function toggleAdoptGraphs(filter) {
   }
 }
 
-/**
- * Filter portfolio cards based on type
- *   - "pets"    → show only PETS cards
- *   - "people" → show only PEOPLE cards + tall layout
- *   - "adopt"  → hide all cards, show graphs
- */
+/* Filter portfolio cards based on type */
 function applyFilter(filter) {
   cards.forEach(card => {
     const type = card.dataset.type;
