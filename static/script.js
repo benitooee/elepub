@@ -66,9 +66,9 @@ const dots = document.querySelectorAll(".carousel-dots .dot");
 
 if (heroPhoto && dots.length) {
   const heroImages = [
-    "https://picsum.photos/seed/hero1/800/1000",
-    "https://picsum.photos/seed/hero2/800/1000",
-    "https://picsum.photos/seed/hero3/800/1000"
+    "static/pets/cat1.jpg",
+    "static/pets/dog7.jpg",
+    "static/pets/dog8.jpg"
   ];
   let hIndex = 0;
 
